@@ -1,10 +1,10 @@
-# search for wav files
-import os
+
+import os        # python comes with these two already but please import or none of the code will work
 import shutil
 
-SOURCE = r"C:\Users\HP\Documents\Splice"
+SOURCE = r"C:\Users\HP\Documents\Splice"  # should be changed to match your directory
 
-TARGET_FOLDERS = [
+TARGET_FOLDERS = [           # you can add file names and this code will look for anything containing that name
     "piano",
     "guitar",
     "percussion",
@@ -31,10 +31,8 @@ for root, dirs, files in os.walk(SOURCE):
                 target_folder = os.path.join(SOURCE, folder_name)
                 dst_file = os.path.join(target_folder, file)
 
-                # ensure folder exists
                 os.makedirs(target_folder, exist_ok=True)
 
-                # prevent overwrite
                 if os.path.exists(dst_file):
                     base, ext = os.path.splitext(file)
                     i = 2
@@ -50,5 +48,6 @@ for root, dirs, files in os.walk(SOURCE):
                 shutil.move(src, dst_file)
                 print(f"MOVED → {folder_name}: {file}")
                 break
+
 
 
